@@ -1,0 +1,275 @@
+ .각 Router의 FastEthernet 0/0에 IP 주소를 할당한후 내부 PC , Server와 통신 실시
+ .각 Router의 Serial interface에 IP 주소 할당후 Next-hop 구간 통신 실시
+
+ #router wan 통신은 hdlc이기 때문에
+	encapsulation hdlc 생략하였다.
+
+
+
+	#GIT
+
+en
+conf t
+!
+hostname GIT
+!
+no ip domain-lookup
+!
+interface fa0/0
+ description To GIT-SW
+ ip address 168.110.21.62 255.255.255.192
+ no shutdown
+!
+interface s1/0
+ description To ISP-1
+ bandwidth 64        
+ ip address 121.160.11.65 255.255.255.252
+ no shutdown
+!
+end
+wr
+!
+
+	#ISP-1
+
+en
+conf t
+!
+hostname ISP-1
+!
+no ip domain-lookup
+!
+interface s1/0
+ description To ISP-7
+bandwidth 128 
+ ip address 121.160.11.93 255.255.255.252
+ clock rate 128000
+ no shutdown
+!
+!
+interface s1/1
+ description To GIT
+bandwidth 64      
+ ip address 121.160.11.66 255.255.255.252
+ clock rate 64000
+ no shutdown
+!
+interface fa0/0
+ description To ISP-2
+ ip address 121.160.11.69 255.255.255.252
+ no shutdown
+!
+end
+wr
+!
+
+	#ISP-2 
+en
+conf t
+!
+hostname ISP-2
+!
+no ip domain-lookup
+!
+interface fa0/1
+ description To ISP-1
+ ip address 121.160.11.70 255.255.255.252
+ no shutdown
+!
+interface fa0/0
+ description To ISP-3
+ ip address 121.160.11.73 255.255.255.252
+ no shutdown
+!
+end
+wr
+!
+
+	#ISP-3 
+
+en
+conf t
+!
+hostname ISP-3
+!
+no ip domain-lookup
+!
+interface fa0/1
+ description To ISP-2
+ ip address 121.160.11.74 255.255.255.252
+ no shutdown
+!
+interface fa0/0
+ description To ISP-4
+ ip address 121.160.11.77 255.255.255.252
+ no shutdown
+!
+interface fa2/0
+ description To ISP-3-SW
+ ip address 168.126.63.254 255.255.255.0
+ no shutdown
+!
+end
+wr
+!
+
+	#ISP-4 
+en
+conf t
+!
+hostname ISP-4
+!
+no ip domain-lookup
+!
+interface fa0/0
+ description To ISP-5
+ ip address 121.160.11.81 255.255.255.252
+ no shutdown
+!
+interface fa0/1
+ description To ISP-3  
+ ip address 121.160.11.78 255.255.255.252
+ no shutdown
+!
+interface s1/0
+ description To R2
+ bandwidth 128
+ ip address 121.160.11.101 255.255.255.252
+ clock rate 128000
+ no shutdown
+!
+end
+wr
+!
+
+	#ISP-5
+
+en
+conf t
+!
+hostname ISP-5
+!
+no ip domain-lookup
+!
+interface s1/1
+ bandwidth 128
+ description To ISP-6
+ ip address 121.160.11.86 255.255.255.252
+ no shutdown
+!
+interface fa0/1
+ description To ISP-4
+ ip address 121.160.11.82 255.255.255.252
+ no shutdown
+!
+interface s1/0
+ description To R1
+ bandwidth 64
+ ip address 121.160.11.97 255.255.255.252
+ clock rate 64000
+ no shutdown
+!
+end
+wr
+!
+	#ISP-6 
+
+en
+conf t
+!
+hostname ISP-6
+!
+no ip domain-lookup
+!
+interface s1/1
+ bandwidth 128
+ description To ISP-7
+ ip address 121.160.11.89 255.255.255.252
+ no shutdown
+!
+interface s1/0
+ description To ISP-5 
+ bandwidth 128
+ ip address 121.160.11.85 255.255.255.252
+ clock rate 128000
+ no shutdown
+!
+interface fa0/0
+ description To ISP-6-SW
+ ip address 168.126.64.254 255.255.255.0
+ no shutdown
+!
+end
+wr
+!
+	#ISP-7 
+
+en
+conf t
+!
+hostname ISP-7
+!
+no ip domain-lookup
+!
+interface s1/0
+ description To ISP-6
+ bandwidth 128
+ ip address 121.160.11.90 255.255.255.252
+ clock rate 128000
+ no shutdown
+!
+interface s1/1
+ bandwidth 128
+ description To ISP-1
+ ip address 121.160.11.94 255.255.255.252
+ no shutdown
+!
+end
+wr
+!
+	#R1 
+
+en
+conf t
+!
+hostname R1
+!
+no ip domain-lookup
+!
+interface fa0/0
+ description To R1-SW 
+ ip address 200.10.1.254 255.255.255.0
+ no shutdown
+!
+interface s1/1
+ bandwidth 64
+ description To ISP-5
+ ip address 121.160.11.98 255.255.255.252
+ no shutdown
+!
+end
+wr
+!
+	#R2 
+
+en
+conf t
+!
+hostname R2
+!
+no ip domain-lookup
+!
+interface fa0/0
+ description To R2-SW 
+ ip address 100.10.1.254 255.255.255.0
+ no shutdown
+!
+interface s1/1
+ description To ISP-4
+ bandwidth 128
+ ip address 121.160.11.102 255.255.255.252
+ no shutdown
+!
+end
+wr
+!
