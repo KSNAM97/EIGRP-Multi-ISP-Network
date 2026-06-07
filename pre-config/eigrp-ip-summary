@@ -1,0 +1,38 @@
+아래의 조건에 맞게 설정하시오
+ .GIT Router는 131.116.X.0/24 네트워크에 대해서 하나의 요약된 네트워크로 확인되어야 한다.
+  (주소 요약을 설정한 Router는 NVRAM에 설정파일을 저장후 재부팅 실시)
+
+ .R1 Router는 131.116.X.0/24 네트워크에 대해서 하나의 요약된 네트워크로 확인되어야 한다.
+  (주소 요약을 설정한 Router는 NVRAM에 설정파일을 저장후 재부팅 실시)
+
+ .GIT 내부 단말장비에서 131.116.X.0/24의 모든 네트워크로 통신이 가능해야한다.
+
+	#ISP-1
+en
+conf t
+!
+interface s1/1
+ip summary-address eigrp 100 131.116.0.0 255.255.248.0
+!
+end
+!
+wr
+!
+reload
+!
+
+	#ISP-5
+en
+conf t
+!
+interface s1/0
+ip summary-address eigrp 100 131.116.0.0 255.255.248.0
+!
+end
+!
+wr
+!
+reload
+!
+
+
