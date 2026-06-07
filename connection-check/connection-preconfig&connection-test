@@ -442,6 +442,20 @@ Routing Protocol is "eigrp 100"
     Serial1/3
 
 
+ISP-4#ping 121.160.11.90
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 121.160.11.90, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 120/137/164 ms
+ISP-4#ping 121.160.11.93
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 121.160.11.93, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 88/105/132 ms
+
+
 	#ISP-5
 
 ISP-5#show ip interface brief
