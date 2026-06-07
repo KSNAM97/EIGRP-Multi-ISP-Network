@@ -77,12 +77,12 @@ EIGRP-Multi-ISP-Network/
 
 | 단계 | 파일 | 내용 |
 |:----:|------|------|
-| **1** | [`01-router-ip-preconfig`](preconfig/01-router-ip-preconfig) | 인터페이스 IP 할당 (WAN/LAN) |
-| **2** | [`02-loopback0-preconfig`](preconfig/02-loopback0-preconfig) | 라우터 식별용 Loopback 0 설정 |
-| **3** | [`03-loopback1-2-preconfig`](preconfig/03-loopback1-2-preconfig) | 131.116.x.0/24 대역 광고용 Loopback |
-| **4** | [`04-eigrp-routing-preconfig`](preconfig/04-eigrp-routing-preconfig) | EIGRP AS 100 라우팅 설정 |
-| **5** | [`05-eigrp-ip-summary-preconfig`](preconfig/05-eigrp-ip-summary-preconfig) | 주소 요약 (ISP-1, ISP-5에서 /21) |
-| **6** | [`verification-commands.md`](connection-check/verification-commands.md) | 통신 확인 및 검증 |
+| **1** | [`01-router-ip-preconfig`](preconfig/01-router-ip-preconfig.txt) | 인터페이스 IP 할당 (WAN/LAN) |
+| **2** | [`02-loopback0-preconfig`](preconfig/02-loopback0-preconfig.txt) | 라우터 식별용 Loopback 0 설정 |
+| **3** | [`03-loopback1-2-preconfig`](preconfig/03-loopback1-2-preconfig.txt) | 131.116.x.0/24 대역 광고용 Loopback |
+| **4** | [`04-eigrp-routing-preconfig`](preconfig/04-eigrp-routing-preconfig.txt) | EIGRP AS 100 라우팅 설정 |
+| **5** | [`05-eigrp-ip-summary-preconfig`](preconfig/05-eigrp-ip-summary-preconfig.txt) | 주소 요약 (ISP-1, ISP-5에서 /21) |
+| **6** | [`verification-commands.md`](connection-check/EIGRP-PreConfig-Check.md) | 통신 확인 및 검증 |
 
 ## 🔧 주요 설정 내용
 
