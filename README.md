@@ -220,18 +220,14 @@ debug eigrp packets             # EIGRP 패킷 디버그
 | **Git / GitHub** | 형상 관리 및 포트폴리오 |
 
 
-## 📜 라이선스
+## 📄 License
 
-이 프로젝트는 [MIT License](LICENSE)를 따릅니다.
-
----
+[MIT License](./LICENSE)
 
 <div align="center">
 
 **작성자**: [KSNAM97](https://github.com/KSNAM97)  
 **작성일**: 2026.06  
 **프로젝트 유형**: 네트워크 엔지니어링 포트폴리오
-
-⭐ 도움이 되셨다면 Star를 눌러주세요!
 
 </div>
