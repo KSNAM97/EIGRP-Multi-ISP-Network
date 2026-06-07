@@ -28,7 +28,8 @@
 
 ## Topology Overview
 
-![EIGRP Multi-ISP Network Topology](topology/eigrp_isp_topology.png)
+![EIGRP Multi-ISP Network Topology](../topology/eigrp_isp_topology.png)
+
 
 
 **Link Subnets** (all `/30`):
