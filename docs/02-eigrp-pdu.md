@@ -129,3 +129,9 @@ show ip eigrp neighbor
 | Query | 송신 Interface IP | Multicast / Unicast (환경별) |
 | Reply | 송신 Interface IP | **Unicast만** |
 | Ack | 송신 Interface IP | **Unicast만** |
+
+### EIGRP 5가지 PDU 캡처 예시
+![EIGRP 5 PDU Capture](./eigrp-5-pdu.png)
+Wireshark 캡처 결과, EIGRP의 5가지 PDU인 Hello, Update, Query, Reply, Ack를 모두 확인하였다.
+Hello는 224.0.0.10 멀티캐스트로 전송되었고, Update/Query/Reply/Ack는 GIT와 ISP-1 사이에서 유니캐스트로 교환되었다.
+특히 Wireshark에서는 Ack가 `Hello (Ack)` 형태로 표시되는 것을 확인할 수 있다.
