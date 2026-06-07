@@ -1,9 +1,6 @@
  .각 Router의 FastEthernet 0/0에 IP 주소를 할당한후 내부 PC , Server와 통신 실시
  .각 Router의 Serial interface에 IP 주소 할당후 Next-hop 구간 통신 실시
-
- #router wan 통신은 hdlc이기 때문에
-	encapsulation hdlc 생략하였다.
-
+ .WAN 구간은 전부 HDLC이기 때문에 encapsulation hdlc 생략하였다.
 
 
 	#GIT
