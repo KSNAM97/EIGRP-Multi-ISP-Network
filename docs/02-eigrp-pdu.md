@@ -132,7 +132,7 @@ show ip eigrp neighbor
 
 ### EIGRP 5가지 PDU 캡처 예시
 
-
+![EIGRP 5 PDU Capture](./EIGRP-PDU-CAPTURE.png)
 
 Wireshark 캡처 결과, EIGRP의 5가지 PDU인 Hello, Update, Query, Reply, Ack를 모두 확인하였다.
 Hello는 224.0.0.10 멀티캐스트로 전송되었고, Update/Query/Reply/Ack는 GIT와 ISP-1 사이에서 유니캐스트로 교환되었다.
