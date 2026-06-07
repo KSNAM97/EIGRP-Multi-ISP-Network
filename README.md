@@ -54,9 +54,9 @@ EIGRP-Multi-ISP-Network/
 ├── 📁 topology/                       # 네트워크 토폴로지 다이어그램
 │   └── eigrp_isp_topology.png
 ├── 📁 docs/                           # EIGRP 이론 정리 문서
-│   ├── 01-eigrp-theory.md             # EIGRP 개요, AD/Metric, K-상수
-│   ├── 02-eigrp-pdu.md                # 5가지 PDU (Hello/Update/Query/Reply/Ack)
-│   └── 03-dual-algorithm.md           # DUAL 알고리즘 (Successor, FD/AD)
+│   ├── eigrp-개론.md             # EIGRP 개요, AD/Metric, K-상수
+│   ├── eigrp-pdu.md                # 5가지 PDU (Hello/Update/Query/Reply/Ack)
+│   └── 듀얼알고리즘.md           # DUAL 알고리즘 (Successor, FD/AD)
 ├── 📁 pre-config/                     # 라우터 설정 단계별 파일
 │   ├── loopback0-preconfig            # 라우터 식별용 Loopback 설정
 │   ├── router-ip-preconfig            # 인터페이스 IP 할당
@@ -112,15 +112,6 @@ interface s1/1
 
 > 💡 **/21 마스크 적용 범위**: `131.116.0.0` ~ `131.116.7.255` (0, 1, 3, 4, 5, 6, 7 대역 모두 포함)
 
-## 📚 EIGRP 이론 (docs/)
-
-프로젝트 진행 과정에서 정리한 EIGRP 핵심 이론 문서입니다.
-
-| 문서 | 내용 |
-|------|------|
-| [📘 01. EIGRP 이론](docs/01-eigrp-theory.md) | EIGRP 개요, Distance Vector + Link-State 특성, AS, AD, Metric, K-상수, Load Balancing |
-| [📗 02. EIGRP 5가지 PDU](docs/02-eigrp-pdu.md) | Hello, Update, Query, Reply, Ack 동작 원리 및 IP 사용 방식 |
-| [📕 03. DUAL 알고리즘](docs/03-dual-algorithm.md) | Successor, Feasible Successor, FD/AD 계산 및 DUAL 조건 |
 
 ### 🔑 EIGRP 핵심 요약
 
