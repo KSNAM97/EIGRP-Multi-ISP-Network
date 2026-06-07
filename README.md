@@ -186,7 +186,7 @@ D       131.116.0.0 [90/40665600] via 121.160.11.97, 00:01:33, Serial1/1
 
 📝 **상세 검증 자료**:
 - [🔍 검증 명령어 가이드](connection-check/verification-commands.md)
-- [📊 실제 검증 결과](connection-check/EIGRP-PreConfig-Check.md)
+- [📊 실제 검증 결과](connection-check/eigrp-connection-check.md)
 
 ## 🔍 주요 검증 명령어
 
