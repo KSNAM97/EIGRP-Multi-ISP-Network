@@ -254,7 +254,8 @@ show ip eigrp neighbor
 
 ---
 
-## 📊 PDU별 IP 주소 사용 요약
+
+🧪 EIGRP 5가지 PDU 캡처 예시
 
 | PDU | 출발지 IP | 목적지 IP |
 |-----|----------|----------|
