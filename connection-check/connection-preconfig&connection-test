@@ -1,0 +1,798 @@
+ROUTER CONNECTING CHECK PRECONFIG
+
+show ip interface brief
+!
+show ip eigrp neighbors
+!
+show ip route eigrp
+!
+show ip protocols
+!
+
+	#GIT
+GIT#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            168.110.21.62   YES NVRAM  up                    up
+FastEthernet0/1            unassigned      YES NVRAM  administratively down down
+Serial1/0                  121.160.11.65   YES NVRAM  up                    up
+Serial1/1                  unassigned      YES NVRAM  administratively down down
+Serial1/2                  unassigned      YES NVRAM  administratively down down
+Serial1/3                  unassigned      YES NVRAM  administratively down down
+Loopback0                  123.123.123.123 YES NVRAM  up                    up
+GIT#!
+GIT#show ip eigrp neighbors
+IP-EIGRP neighbors for process 100
+H   Address                 Interface       Hold Uptime   SRTT   RTO  Q  Seq
+                                            (sec)         (ms)       Cnt Num
+0   121.160.11.66           Se1/0             14 00:00:22   22  2280  0  63
+GIT#!
+GIT#show ip route eigrp
+     100.0.0.0/24 is subnetted, 1 subnets
+D       100.10.1.0 [90/41126400] via 121.160.11.66, 00:00:20, Serial1/0
+     168.126.0.0/24 is subnetted, 2 subnets
+D       168.126.64.0 [90/41152000] via 121.160.11.66, 00:00:20, Serial1/0
+D       168.126.63.0 [90/40565760] via 121.160.11.66, 00:00:11, Serial1/0
+     101.0.0.0/24 is subnetted, 7 subnets
+D       101.101.101.0 [90/40640000] via 121.160.11.66, 00:00:25, Serial1/0
+D       101.101.102.0 [90/40665600] via 121.160.11.66, 00:00:12, Serial1/0
+D       101.101.103.0 [90/40691200] via 121.160.11.66, 00:00:11, Serial1/0
+D       101.101.104.0 [90/40716800] via 121.160.11.66, 00:00:12, Serial1/0
+D       101.101.105.0 [90/40742400] via 121.160.11.66, 00:00:13, Serial1/0
+D       101.101.106.0 [90/41254400] via 121.160.11.66, 00:00:13, Serial1/0
+D       101.101.107.0 [90/41152000] via 121.160.11.66, 00:00:22, Serial1/0
+D    200.10.1.0/24 [90/41152000] via 121.160.11.66, 00:00:20, Serial1/0
+     22.0.0.0/24 is subnetted, 1 subnets
+D       22.22.22.0 [90/41228800] via 121.160.11.66, 00:00:14, Serial1/0
+     131.116.0.0/21 is subnetted, 1 subnets
+D       131.116.0.0 [90/40665600] via 121.160.11.66, 00:00:14, Serial1/0
+     11.0.0.0/24 is subnetted, 1 subnets
+D       11.11.11.0 [90/41254400] via 121.160.11.66, 00:00:15, Serial1/0
+     121.0.0.0/30 is subnetted, 10 subnets
+D       121.160.11.80 [90/40614400] via 121.160.11.66, 00:00:14, Serial1/0
+D       121.160.11.84 [90/41126400] via 121.160.11.66, 00:00:15, Serial1/0
+
+GIT#
+GIT#show ip protocols
+Routing Protocol is "eigrp 100"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  EIGRP metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+  EIGRP maximum hopcount 100
+  EIGRP maximum metric variance 1
+  Redistributing: eigrp 100
+  EIGRP NSF-aware route hold timer is 240s
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    121.160.11.64/30
+    123.123.123.0/24
+    168.110.21.0/26
+  Passive Interface(s):
+    FastEthernet0/0
+    FastEthernet0/1
+    Serial1/1
+    Serial1/2
+    Serial1/3
+    Loopback0
+
+
+	#ISP-1
+
+ISP-1#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            121.160.11.69   YES NVRAM  up                    up
+FastEthernet0/1            unassigned      YES NVRAM  administratively down down
+Serial1/0                  121.160.11.93   YES NVRAM  up                    up
+Serial1/1                  121.160.11.66   YES NVRAM  up                    up
+Serial1/2                  unassigned      YES NVRAM  administratively down down
+Serial1/3                  unassigned      YES NVRAM  administratively down down
+Loopback0                  101.101.101.1   YES NVRAM  up                    up
+ISP-1#!
+ISP-1#show ip eigrp neighbors
+IP-EIGRP neighbors for process 100
+H   Address                 Interface       Hold Uptime   SRTT   RTO  Q  Seq
+                                            (sec)         (ms)       Cnt Num
+2   121.160.11.94           Se1/0             11 00:01:27   27  1140  0  39
+1   121.160.11.65           Se1/1              9 00:01:30   51  2280  0  26
+0   121.160.11.70           Fa0/0             14 00:01:34   54   324  0  58
+ISP-1#!
+ISP-1#show ip route eigrp
+     100.0.0.0/24 is subnetted, 1 subnets
+D       100.10.1.0 [90/20614400] via 121.160.11.70, 00:01:24, FastEthernet0/0
+     168.110.0.0/26 is subnetted, 1 subnets
+D       168.110.21.0 [90/40537600] via 121.160.11.65, 00:01:26, Serial1/1
+     168.126.0.0/24 is subnetted, 2 subnets
+D       168.126.64.0
+           [90/20640000] via 121.160.11.70, 00:01:25, FastEthernet0/0
+D       168.126.63.0 [90/309760] via 121.160.11.70, 00:01:15, FastEthernet0/0
+     101.0.0.0/24 is subnetted, 7 subnets
+D       101.101.102.0 [90/409600] via 121.160.11.70, 00:01:16, FastEthernet0/0
+D       101.101.103.0 [90/435200] via 121.160.11.70, 00:01:15, FastEthernet0/0
+D       101.101.104.0 [90/460800] via 121.160.11.70, 00:01:17, FastEthernet0/0
+D       101.101.105.0 [90/486400] via 121.160.11.70, 00:01:18, FastEthernet0/0
+D       101.101.106.0
+           [90/20742400] via 121.160.11.70, 00:01:20, FastEthernet0/0
+D       101.101.107.0 [90/20640000] via 121.160.11.94, 00:01:32, Serial1/0
+D    200.10.1.0/24 [90/40640000] via 121.160.11.70, 00:01:27, FastEthernet0/0
+     22.0.0.0/24 is subnetted, 1 subnets
+D       22.22.22.0 [90/20716800] via 121.160.11.70, 00:01:19, FastEthernet0/0
+     131.116.0.0/16 is variably subnetted, 8 subnets, 2 masks
+D       131.116.7.0/24
+           [90/20742400] via 121.160.11.70, 00:01:20, FastEthernet0/0
+D       131.116.6.0/24
+
+ISP-1#
+ISP-1#show ip protocols
+Routing Protocol is "eigrp 100"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  EIGRP metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+  EIGRP maximum hopcount 100
+  EIGRP maximum metric variance 1
+  Redistributing: eigrp 100
+  EIGRP NSF-aware route hold timer is 240s
+  Automatic network summarization is not in effect
+  Address Summarization:
+    131.116.0.0/21 for Serial1/1
+      Summarizing with metric 409600
+  Maximum path: 4
+  Routing for Networks:
+    101.101.101.0/24
+    121.160.11.64/30
+    121.160.11.68/30
+    121.160.11.92/30
+  Passive Interface(s):
+    FastEthernet0/1
+    Serial1/2
+
+#ISP-2
+
+show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            121.160.11.73   YES NVRAM  up                    up
+FastEthernet0/1            121.160.11.70   YES NVRAM  up                    up
+Serial1/0                  unassigned      YES NVRAM  administratively down down
+Serial1/1                  unassigned      YES NVRAM  administratively down down
+Serial1/2                  unassigned      YES NVRAM  administratively down down
+Serial1/3                  unassigned      YES NVRAM  administratively down down
+Loopback0                  101.101.102.2   YES NVRAM  up                    up
+Loopback1                  131.116.0.2     YES NVRAM  up                    up
+Loopback2                  131.116.1.2     YES NVRAM  up                    up
+ISP-2#!
+ISP-2#show ip eigrp neighbors
+IP-EIGRP neighbors for process 100
+H   Address                 Interface       Hold Uptime   SRTT   RTO  Q  Seq
+                                            (sec)         (ms)       Cnt Num
+1   121.160.11.74           Fa0/0             13 00:01:29   41   246  0  56
+0   121.160.11.69           Fa0/1             14 00:01:29   53   318  0  62
+ISP-2#!
+ISP-2#show ip route eigrp
+     100.0.0.0/24 is subnetted, 1 subnets
+D       100.10.1.0 [90/20588800] via 121.160.11.74, 00:01:20, FastEthernet0/0
+     168.110.0.0/26 is subnetted, 1 subnets
+D       168.110.21.0
+           [90/40563200] via 121.160.11.69, 00:01:11, FastEthernet0/1
+     168.126.0.0/24 is subnetted, 2 subnets
+D       168.126.64.0
+           [90/20614400] via 121.160.11.74, 00:01:21, FastEthernet0/0
+D       168.126.63.0 [90/284160] via 121.160.11.74, 00:01:12, FastEthernet0/0
+     101.0.0.0/24 is subnetted, 7 subnets
+D       101.101.101.0 [90/409600] via 121.160.11.69, 00:01:11, FastEthernet0/1
+D       101.101.103.0 [90/409600] via 121.160.11.74, 00:01:12, FastEthernet0/0
+D       101.101.104.0 [90/435200] via 121.160.11.74, 00:01:12, FastEthernet0/0
+D       101.101.105.0 [90/460800] via 121.160.11.74, 00:01:16, FastEthernet0/0
+D       101.101.106.0
+           [90/20716800] via 121.160.11.74, 00:01:16, FastEthernet0/0
+D       101.101.107.0
+           [90/20665600] via 121.160.11.69, 00:01:14, FastEthernet0/1
+D    200.10.1.0/24 [90/40614400] via 121.160.11.74, 00:01:22, FastEthernet0/0
+     22.0.0.0/24 is subnetted, 1 subnets
+D       22.22.22.0 [90/20691200] via 121.160.11.74, 00:01:15, FastEthernet0/0
+     131.116.0.0/24 is subnetted, 7 subnets
+D       131.116.7.0 [90/20716800] via 121.160.11.74, 00:01:16, FastEthernet0/0
+
+ISP-2#
+ISP-2#show ip protocols
+Routing Protocol is "eigrp 100"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  EIGRP metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+  EIGRP maximum hopcount 100
+  EIGRP maximum metric variance 1
+  Redistributing: eigrp 100
+  EIGRP NSF-aware route hold timer is 240s
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    101.101.102.0/24
+    121.160.11.68/30
+    121.160.11.72/30
+    131.116.0.0/24
+    131.116.1.0/24
+  Passive Interface(s):
+    Serial1/0
+    Serial1/1
+    Serial1/2
+    Serial1/3
+
+
+	#ISP-2
+show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            121.160.11.73   YES NVRAM  up                    up
+FastEthernet0/1            121.160.11.70   YES NVRAM  up                    up
+Serial1/0                  unassigned      YES NVRAM  administratively down down
+Serial1/1                  unassigned      YES NVRAM  administratively down down
+Serial1/2                  unassigned      YES NVRAM  administratively down down
+Serial1/3                  unassigned      YES NVRAM  administratively down down
+Loopback0                  101.101.102.2   YES NVRAM  up                    up
+Loopback1                  131.116.0.2     YES NVRAM  up                    up
+Loopback2                  131.116.1.2     YES NVRAM  up                    up
+ISP-2#!
+ISP-2#show ip eigrp neighbors
+IP-EIGRP neighbors for process 100
+H   Address                 Interface       Hold Uptime   SRTT   RTO  Q  Seq
+                                            (sec)         (ms)       Cnt Num
+1   121.160.11.74           Fa0/0             13 00:01:29   41   246  0  56
+0   121.160.11.69           Fa0/1             14 00:01:29   53   318  0  62
+ISP-2#!
+ISP-2#show ip route eigrp
+     100.0.0.0/24 is subnetted, 1 subnets
+D       100.10.1.0 [90/20588800] via 121.160.11.74, 00:01:20, FastEthernet0/0
+     168.110.0.0/26 is subnetted, 1 subnets
+D       168.110.21.0
+           [90/40563200] via 121.160.11.69, 00:01:11, FastEthernet0/1
+     168.126.0.0/24 is subnetted, 2 subnets
+D       168.126.64.0
+           [90/20614400] via 121.160.11.74, 00:01:21, FastEthernet0/0
+D       168.126.63.0 [90/284160] via 121.160.11.74, 00:01:12, FastEthernet0/0
+     101.0.0.0/24 is subnetted, 7 subnets
+D       101.101.101.0 [90/409600] via 121.160.11.69, 00:01:11, FastEthernet0/1
+D       101.101.103.0 [90/409600] via 121.160.11.74, 00:01:12, FastEthernet0/0
+D       101.101.104.0 [90/435200] via 121.160.11.74, 00:01:12, FastEthernet0/0
+D       101.101.105.0 [90/460800] via 121.160.11.74, 00:01:16, FastEthernet0/0
+D       101.101.106.0
+           [90/20716800] via 121.160.11.74, 00:01:16, FastEthernet0/0
+D       101.101.107.0
+           [90/20665600] via 121.160.11.69, 00:01:14, FastEthernet0/1
+D    200.10.1.0/24 [90/40614400] via 121.160.11.74, 00:01:22, FastEthernet0/0
+     22.0.0.0/24 is subnetted, 1 subnets
+D       22.22.22.0 [90/20691200] via 121.160.11.74, 00:01:15, FastEthernet0/0
+     131.116.0.0/24 is subnetted, 7 subnets
+D       131.116.7.0 [90/20716800] via 121.160.11.74, 00:01:16, FastEthernet0/0
+
+ISP-2#
+ISP-2#show ip protocols
+Routing Protocol is "eigrp 100"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  EIGRP metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+  EIGRP maximum hopcount 100
+  EIGRP maximum metric variance 1
+  Redistributing: eigrp 100
+  EIGRP NSF-aware route hold timer is 240s
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    101.101.102.0/24
+    121.160.11.68/30
+    121.160.11.72/30
+    131.116.0.0/24
+    131.116.1.0/24
+  Passive Interface(s):
+    Serial1/0
+    Serial1/1
+    Serial1/2
+    Serial1/3
+
+
+	#ISP-3
+
+ISP-3#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            121.160.11.77   YES NVRAM  up                    up
+FastEthernet0/1            121.160.11.74   YES NVRAM  up                    up
+Serial1/0                  unassigned      YES NVRAM  administratively down down
+Serial1/1                  unassigned      YES NVRAM  administratively down down
+Serial1/2                  unassigned      YES NVRAM  administratively down down
+Serial1/3                  unassigned      YES NVRAM  administratively down down
+FastEthernet2/0            168.126.63.254  YES NVRAM  up                    up
+Loopback0                  101.101.103.3   YES NVRAM  up                    up
+Loopback1                  131.116.3.3     YES NVRAM  up                    up
+Loopback2                  131.116.4.3     YES NVRAM  up                    up
+ISP-3#!
+ISP-3#show ip eigrp neighbors
+IP-EIGRP neighbors for process 100
+H   Address                 Interface       Hold Uptime   SRTT   RTO  Q  Seq
+                                            (sec)         (ms)       Cnt Num
+1   121.160.11.78           Fa0/0             12 00:01:34   45   270  0  83
+0   121.160.11.73           Fa0/1             13 00:01:34   58   348  0  59
+ISP-3#!
+ISP-3#show ip route eigrp
+     100.0.0.0/24 is subnetted, 1 subnets
+D       100.10.1.0 [90/20563200] via 121.160.11.78, 00:01:25, FastEthernet0/0
+     168.110.0.0/26 is subnetted, 1 subnets
+D       168.110.21.0
+           [90/40588800] via 121.160.11.73, 00:01:14, FastEthernet0/1
+     168.126.0.0/24 is subnetted, 2 subnets
+D       168.126.64.0
+           [90/20588800] via 121.160.11.78, 00:01:25, FastEthernet0/0
+     101.0.0.0/24 is subnetted, 7 subnets
+D       101.101.101.0 [90/435200] via 121.160.11.73, 00:01:15, FastEthernet0/1
+D       101.101.102.0 [90/409600] via 121.160.11.73, 00:01:16, FastEthernet0/1
+D       101.101.104.0 [90/409600] via 121.160.11.78, 00:01:18, FastEthernet0/0
+D       101.101.105.0 [90/435200] via 121.160.11.78, 00:01:19, FastEthernet0/0
+D       101.101.106.0
+           [90/20691200] via 121.160.11.78, 00:01:19, FastEthernet0/0
+D       101.101.107.0
+           [90/20691200] via 121.160.11.73, 00:01:17, FastEthernet0/1
+D    200.10.1.0/24 [90/40588800] via 121.160.11.78, 00:01:27, FastEthernet0/0
+     22.0.0.0/24 is subnetted, 1 subnets
+D       22.22.22.0 [90/20665600] via 121.160.11.78, 00:01:18, FastEthernet0/0
+     131.116.0.0/24 is subnetted, 7 subnets
+D       131.116.7.0 [90/20691200] via 121.160.11.78, 00:01:20, FastEthernet0/0
+D       131.116.6.0 [90/409600] via 121.160.11.78, 00:01:18, FastEthernet0/0
+
+ISP-3#
+ISP-3#show ip protocols
+Routing Protocol is "eigrp 100"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  EIGRP metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+  EIGRP maximum hopcount 100
+  EIGRP maximum metric variance 1
+  Redistributing: eigrp 100
+  EIGRP NSF-aware route hold timer is 240s
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    101.101.103.0/24
+    121.160.11.72/30
+    121.160.11.76/30
+    131.116.3.0/24
+    131.116.4.0/24
+    168.126.63.0/24
+  Passive Interface(s):
+    Serial1/0
+    Serial1/1
+    Serial1/2
+
+
+
+	#ISP-4
+ISP-4#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            121.160.11.81   YES NVRAM  up                    up
+FastEthernet0/1            121.160.11.78   YES NVRAM  up                    up
+Serial1/0                  121.160.11.101  YES NVRAM  up                    up
+Serial1/1                  unassigned      YES NVRAM  administratively down down
+Serial1/2                  unassigned      YES NVRAM  administratively down down
+Serial1/3                  unassigned      YES NVRAM  administratively down down
+Loopback0                  101.101.104.4   YES NVRAM  up                    up
+Loopback1                  131.116.5.4     YES NVRAM  up                    up
+Loopback2                  131.116.6.4     YES NVRAM  up                    up
+ISP-4#!
+ISP-4#show ip eigrp neighbors
+IP-EIGRP neighbors for process 100
+H   Address                 Interface       Hold Uptime   SRTT   RTO  Q  Seq
+                                            (sec)         (ms)       Cnt Num
+2   121.160.11.102          Se1/0             12 00:01:33   53  1140  0  24
+1   121.160.11.77           Fa0/1             10 00:01:37   65   390  0  58
+0   121.160.11.82           Fa0/0             13 00:01:37   56   336  0  72
+ISP-4#!
+ISP-4#show ip route eigrp
+     100.0.0.0/24 is subnetted, 1 subnets
+D       100.10.1.0 [90/20537600] via 121.160.11.102, 00:01:28, Serial1/0
+     168.110.0.0/26 is subnetted, 1 subnets
+D       168.110.21.0
+           [90/40614400] via 121.160.11.77, 00:01:17, FastEthernet0/1
+     168.126.0.0/24 is subnetted, 2 subnets
+D       168.126.64.0
+           [90/20563200] via 121.160.11.82, 00:01:28, FastEthernet0/0
+D       168.126.63.0 [90/284160] via 121.160.11.77, 00:01:20, FastEthernet0/1
+     101.0.0.0/24 is subnetted, 7 subnets
+D       101.101.101.0 [90/460800] via 121.160.11.77, 00:01:17, FastEthernet0/1
+D       101.101.102.0 [90/435200] via 121.160.11.77, 00:01:18, FastEthernet0/1
+D       101.101.103.0 [90/409600] via 121.160.11.77, 00:01:22, FastEthernet0/1
+D       101.101.105.0 [90/409600] via 121.160.11.82, 00:01:22, FastEthernet0/0
+D       101.101.106.0
+           [90/20665600] via 121.160.11.82, 00:01:22, FastEthernet0/0
+D       101.101.107.0
+           [90/20716800] via 121.160.11.77, 00:01:19, FastEthernet0/1
+D    200.10.1.0/24 [90/40563200] via 121.160.11.82, 00:01:29, FastEthernet0/0
+     22.0.0.0/24 is subnetted, 1 subnets
+D       22.22.22.0 [90/20640000] via 121.160.11.102, 00:01:35, Serial1/0
+     131.116.0.0/24 is subnetted, 7 subnets
+D       131.116.7.0 [90/20665600] via 121.160.11.82, 00:01:22, FastEthernet0/0
+
+ISP-4#
+ISP-4#show ip protocols
+Routing Protocol is "eigrp 100"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  EIGRP metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+  EIGRP maximum hopcount 100
+  EIGRP maximum metric variance 1
+  Redistributing: eigrp 100
+  EIGRP NSF-aware route hold timer is 240s
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    101.101.104.0/24
+    121.160.11.76/30
+    121.160.11.80/30
+    121.160.11.100/30
+    131.116.5.0/24
+    131.116.6.0/24
+  Passive Interface(s):
+    Serial1/1
+    Serial1/2
+    Serial1/3
+
+
+	#ISP-5
+
+ISP-5#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            unassigned      YES NVRAM  administratively down down
+FastEthernet0/1            121.160.11.82   YES NVRAM  up                    up
+Serial1/0                  121.160.11.97   YES NVRAM  up                    up
+Serial1/1                  121.160.11.86   YES NVRAM  up                    up
+Serial1/2                  unassigned      YES NVRAM  administratively down down
+Serial1/3                  unassigned      YES NVRAM  administratively down down
+Loopback0                  101.101.105.5   YES NVRAM  up                    up
+ISP-5#!
+ISP-5#show ip eigrp neighbors
+IP-EIGRP neighbors for process 100
+H   Address                 Interface       Hold Uptime   SRTT   RTO  Q  Seq
+                                            (sec)         (ms)       Cnt Num
+2   121.160.11.98           Se1/0             14 00:01:33   53  2280  0  27
+1   121.160.11.85           Se1/1             14 00:01:36   58  1140  0  45
+0   121.160.11.81           Fa0/1             12 00:01:40   55   330  0  84
+ISP-5#!
+ISP-5#show ip route eigrp
+     100.0.0.0/24 is subnetted, 1 subnets
+D       100.10.1.0 [90/20563200] via 121.160.11.81, 00:01:30, FastEthernet0/1
+     168.110.0.0/26 is subnetted, 1 subnets
+D       168.110.21.0
+           [90/40640000] via 121.160.11.81, 00:01:19, FastEthernet0/1
+     168.126.0.0/24 is subnetted, 2 subnets
+D       168.126.64.0 [90/20537600] via 121.160.11.85, 00:01:31, Serial1/1
+D       168.126.63.0 [90/309760] via 121.160.11.81, 00:01:22, FastEthernet0/1
+     101.0.0.0/24 is subnetted, 7 subnets
+D       101.101.101.0 [90/486400] via 121.160.11.81, 00:01:19, FastEthernet0/1
+D       101.101.102.0 [90/460800] via 121.160.11.81, 00:01:20, FastEthernet0/1
+D       101.101.103.0 [90/435200] via 121.160.11.81, 00:01:22, FastEthernet0/1
+D       101.101.104.0 [90/409600] via 121.160.11.81, 00:01:21, FastEthernet0/1
+D       101.101.106.0 [90/20640000] via 121.160.11.85, 00:01:38, Serial1/1
+D       101.101.107.0
+           [90/20742400] via 121.160.11.81, 00:01:21, FastEthernet0/1
+D    200.10.1.0/24 [90/40537600] via 121.160.11.98, 00:01:32, Serial1/0
+     22.0.0.0/24 is subnetted, 1 subnets
+D       22.22.22.0 [90/20665600] via 121.160.11.81, 00:01:24, FastEthernet0/1
+     131.116.0.0/16 is variably subnetted, 8 subnets, 2 masks
+D       131.116.7.0/24 [90/20640000] via 121.160.11.85, 00:01:38, Serial1/1
+D       131.116.6.0/24
+           [90/409600] via 121.160.11.81, 00:01:24, FastEthernet0/1
+
+ISP-5#
+ISP-5#show ip protocols
+Routing Protocol is "eigrp 100"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  EIGRP metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+  EIGRP maximum hopcount 100
+  EIGRP maximum metric variance 1
+  Redistributing: eigrp 100
+  EIGRP NSF-aware route hold timer is 240s
+  Automatic network summarization is not in effect
+  Address Summarization:
+    131.116.0.0/21 for Serial1/0
+      Summarizing with metric 409600
+  Maximum path: 4
+  Routing for Networks:
+    101.101.105.0/24
+    121.160.11.80/30
+    121.160.11.84/30
+    121.160.11.96/30
+  Passive Interface(s):
+    FastEthernet0/0
+    Serial1/2
+
+
+
+	#ISP-6
+
+ISP-6#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            168.126.64.254  YES NVRAM  up                    up
+FastEthernet0/1            unassigned      YES NVRAM  administratively down down
+Serial1/0                  121.160.11.85   YES NVRAM  up                    up
+Serial1/1                  121.160.11.89   YES NVRAM  up                    up
+Serial1/2                  unassigned      YES NVRAM  administratively down down
+Serial1/3                  unassigned      YES NVRAM  administratively down down
+Loopback0                  101.101.106.6   YES NVRAM  up                    up
+Loopback1                  131.116.7.6     YES NVRAM  up                    up
+ISP-6#!
+ISP-6#show ip eigrp neighbors
+IP-EIGRP neighbors for process 100
+H   Address                 Interface       Hold Uptime   SRTT   RTO  Q  Seq
+                                            (sec)         (ms)       Cnt Num
+1   121.160.11.90           Se1/1             11 00:01:41   55  1140  0  40
+0   121.160.11.86           Se1/0             14 00:01:41   39  1140  0  71
+ISP-6#!
+ISP-6#show ip route eigrp
+     100.0.0.0/24 is subnetted, 1 subnets
+D       100.10.1.0 [90/21075200] via 121.160.11.86, 00:01:36, Serial1/0
+     168.110.0.0/26 is subnetted, 1 subnets
+D       168.110.21.0 [90/41152000] via 121.160.11.86, 00:01:24, Serial1/0
+     168.126.0.0/24 is subnetted, 2 subnets
+D       168.126.63.0 [90/20565760] via 121.160.11.86, 00:01:24, Serial1/0
+     101.0.0.0/24 is subnetted, 7 subnets
+D       101.101.101.0 [90/20742400] via 121.160.11.86, 00:01:24, Serial1/0
+D       101.101.102.0 [90/20716800] via 121.160.11.86, 00:01:24, Serial1/0
+D       101.101.103.0 [90/20691200] via 121.160.11.86, 00:01:24, Serial1/0
+D       101.101.104.0 [90/20665600] via 121.160.11.86, 00:01:25, Serial1/0
+D       101.101.105.0 [90/20640000] via 121.160.11.86, 00:01:27, Serial1/0
+D       101.101.107.0 [90/20640000] via 121.160.11.90, 00:01:26, Serial1/1
+D    200.10.1.0/24 [90/41049600] via 121.160.11.86, 00:01:39, Serial1/0
+     22.0.0.0/24 is subnetted, 1 subnets
+D       22.22.22.0 [90/21177600] via 121.160.11.86, 00:01:27, Serial1/0
+     131.116.0.0/24 is subnetted, 7 subnets
+D       131.116.6.0 [90/20665600] via 121.160.11.86, 00:01:27, Serial1/0
+D       131.116.5.0 [90/20665600] via 121.160.11.86, 00:01:27, Serial1/0
+D       131.116.4.0 [90/20691200] via 121.160.11.86, 00:01:26, Serial1/0
+D       131.116.3.0 [90/20691200] via 121.160.11.86, 00:01:26, Serial1/0
+D       131.116.1.0 [90/20716800] via 121.160.11.86, 00:01:27, Serial1/0
+D       131.116.0.0 [90/20716800] via 121.160.11.86, 00:01:27, Serial1/0
+
+ISP-6#
+ISP-6#show ip protocols
+Routing Protocol is "eigrp 100"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  EIGRP metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+  EIGRP maximum hopcount 100
+  EIGRP maximum metric variance 1
+  Redistributing: eigrp 100
+  EIGRP NSF-aware route hold timer is 240s
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    101.101.106.0/24
+    121.160.11.84/30
+    121.160.11.88/30
+    131.116.7.0/24
+    168.126.64.0/24
+  Passive Interface(s):
+    FastEthernet0/0
+    FastEthernet0/1
+    Serial1/2
+    Serial1/3
+
+
+	#ISP-7
+
+ISP-7#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            unassigned      YES NVRAM  administratively down down
+FastEthernet0/1            unassigned      YES NVRAM  administratively down down
+Serial1/0                  121.160.11.90   YES NVRAM  up                    up
+Serial1/1                  121.160.11.94   YES NVRAM  up                    up
+Serial1/2                  unassigned      YES NVRAM  administratively down down
+Serial1/3                  unassigned      YES NVRAM  administratively down down
+Loopback0                  101.101.107.7   YES NVRAM  up                    up
+ISP-7#!
+ISP-7#show ip eigrp neighbors
+IP-EIGRP neighbors for process 100
+H   Address                 Interface       Hold Uptime   SRTT   RTO  Q  Seq
+                                            (sec)         (ms)       Cnt Num
+1   121.160.11.89           Se1/0             12 00:01:42   32  1140  0  44
+0   121.160.11.93           Se1/1             13 00:01:45   29  1140  0  64
+ISP-7#!
+ISP-7#show ip route eigrp
+     100.0.0.0/24 is subnetted, 1 subnets
+D       100.10.1.0 [90/21126400] via 121.160.11.93, 00:01:40, Serial1/1
+     168.110.0.0/26 is subnetted, 1 subnets
+D       168.110.21.0 [90/41049600] via 121.160.11.93, 00:01:26, Serial1/1
+     168.126.0.0/24 is subnetted, 2 subnets
+D       168.126.64.0 [90/20537600] via 121.160.11.89, 00:01:41, Serial1/0
+D       168.126.63.0 [90/20565760] via 121.160.11.93, 00:01:26, Serial1/1
+     101.0.0.0/24 is subnetted, 7 subnets
+D       101.101.101.0 [90/20640000] via 121.160.11.93, 00:01:26, Serial1/1
+D       101.101.102.0 [90/20665600] via 121.160.11.93, 00:01:27, Serial1/1
+D       101.101.103.0 [90/20691200] via 121.160.11.93, 00:01:26, Serial1/1
+D       101.101.104.0 [90/20716800] via 121.160.11.93, 00:01:27, Serial1/1
+D       101.101.105.0 [90/20742400] via 121.160.11.93, 00:01:29, Serial1/1
+D       101.101.106.0 [90/20640000] via 121.160.11.89, 00:01:31, Serial1/0
+D    200.10.1.0/24 [90/41152000] via 121.160.11.93, 00:01:42, Serial1/1
+     22.0.0.0/24 is subnetted, 1 subnets
+D       22.22.22.0 [90/21228800] via 121.160.11.93, 00:01:29, Serial1/1
+     131.116.0.0/24 is subnetted, 7 subnets
+D       131.116.7.0 [90/20640000] via 121.160.11.89, 00:01:31, Serial1/0
+D       131.116.6.0 [90/20716800] via 121.160.11.93, 00:01:29, Serial1/1
+D       131.116.5.0 [90/20716800] via 121.160.11.93, 00:01:29, Serial1/1
+D       131.116.4.0 [90/20691200] via 121.160.11.93, 00:01:28, Serial1/1
+D       131.116.3.0 [90/20691200] via 121.160.11.93, 00:01:28, Serial1/1
+
+ISP-7#
+ISP-7#show ip protocols
+Routing Protocol is "eigrp 100"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  EIGRP metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+  EIGRP maximum hopcount 100
+  EIGRP maximum metric variance 1
+  Redistributing: eigrp 100
+  EIGRP NSF-aware route hold timer is 240s
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    101.101.107.0/24
+    121.160.11.88/30
+    121.160.11.92/30
+  Passive Interface(s):
+    FastEthernet0/0
+    FastEthernet0/1
+    Serial1/2
+    Serial1/3
+    Loopback0
+    VoIP-Null0
+
+
+	#R1
+
+R1#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            200.10.1.254    YES NVRAM  up                    up
+FastEthernet0/1            unassigned      YES NVRAM  administratively down down
+Serial1/0                  unassigned      YES NVRAM  administratively down down
+Serial1/1                  121.160.11.98   YES NVRAM  up                    up
+Serial1/2                  unassigned      YES NVRAM  administratively down down
+Serial1/3                  unassigned      YES NVRAM  administratively down down
+Loopback0                  11.11.11.11     YES NVRAM  up                    up
+R1#!
+R1#show ip eigrp neighbors
+IP-EIGRP neighbors for process 100
+H   Address                 Interface       Hold Uptime   SRTT   RTO  Q  Seq
+                                            (sec)         (ms)       Cnt Num
+0   121.160.11.97           Se1/1             13 00:01:43   34  2280  0  70
+R1#!
+R1#show ip route eigrp
+     100.0.0.0/24 is subnetted, 1 subnets
+D       100.10.1.0 [90/41075200] via 121.160.11.97, 00:01:41, Serial1/1
+     168.110.0.0/26 is subnetted, 1 subnets
+D       168.110.21.0 [90/41152000] via 121.160.11.97, 00:01:29, Serial1/1
+     168.126.0.0/24 is subnetted, 2 subnets
+D       168.126.64.0 [90/41049600] via 121.160.11.97, 00:01:42, Serial1/1
+D       168.126.63.0 [90/40565760] via 121.160.11.97, 00:01:32, Serial1/1
+     101.0.0.0/24 is subnetted, 7 subnets
+D       101.101.101.0 [90/40742400] via 121.160.11.97, 00:01:29, Serial1/1
+D       101.101.102.0 [90/40716800] via 121.160.11.97, 00:01:30, Serial1/1
+D       101.101.103.0 [90/40691200] via 121.160.11.97, 00:01:32, Serial1/1
+D       101.101.104.0 [90/40665600] via 121.160.11.97, 00:01:31, Serial1/1
+D       101.101.105.0 [90/40640000] via 121.160.11.97, 00:01:46, Serial1/1
+D       101.101.106.0 [90/41152000] via 121.160.11.97, 00:01:46, Serial1/1
+D       101.101.107.0 [90/41254400] via 121.160.11.97, 00:01:29, Serial1/1
+     22.0.0.0/24 is subnetted, 1 subnets
+D       22.22.22.0 [90/41177600] via 121.160.11.97, 00:01:33, Serial1/1
+     131.116.0.0/21 is subnetted, 1 subnets
+D       131.116.0.0 [90/40665600] via 121.160.11.97, 00:01:33, Serial1/1
+     123.0.0.0/24 is subnetted, 1 subnets
+D       123.123.123.0 [90/41254400] via 121.160.11.97, 00:01:31, Serial1/1
+     121.0.0.0/30 is subnetted, 10 subnets
+D       121.160.11.80 [90/40537600] via 121.160.11.97, 00:01:44, Serial1/1
+
+R1#
+R1#show ip protocols
+Routing Protocol is "eigrp 100"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  EIGRP metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+  EIGRP maximum hopcount 100
+  EIGRP maximum metric variance 1
+  Redistributing: eigrp 100
+  EIGRP NSF-aware route hold timer is 240s
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    11.11.11.0/24
+    121.160.11.96/30
+    200.10.1.0
+  Passive Interface(s):
+    FastEthernet0/0
+    FastEthernet0/1
+    Serial1/0
+    Serial1/2
+    Serial1/3
+    Loopback0
+
+
+	#R2
+
+R2#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            100.10.1.254    YES NVRAM  up                    up
+FastEthernet0/1            unassigned      YES NVRAM  administratively down down
+Serial1/0                  unassigned      YES NVRAM  administratively down down
+Serial1/1                  121.160.11.102  YES NVRAM  up                    up
+Serial1/2                  unassigned      YES NVRAM  administratively down down
+Serial1/3                  unassigned      YES NVRAM  administratively down down
+Loopback0                  22.22.22.22     YES NVRAM  up                    up
+R2#!
+R2#show ip eigrp neighbors
+IP-EIGRP neighbors for process 100
+H   Address                 Interface       Hold Uptime   SRTT   RTO  Q  Seq
+                                            (sec)         (ms)       Cnt Num
+0   121.160.11.101          Se1/1             10 00:01:37   18  1140  0  81
+R2#!
+R2#show ip route eigrp
+     168.110.0.0/26 is subnetted, 1 subnets
+D       168.110.21.0 [90/41126400] via 121.160.11.101, 00:01:26, Serial1/1
+     168.126.0.0/24 is subnetted, 2 subnets
+D       168.126.64.0 [90/21075200] via 121.160.11.101, 00:01:35, Serial1/1
+D       168.126.63.0 [90/20540160] via 121.160.11.101, 00:01:27, Serial1/1
+     101.0.0.0/24 is subnetted, 7 subnets
+D       101.101.101.0 [90/20716800] via 121.160.11.101, 00:01:26, Serial1/1
+D       101.101.102.0 [90/20691200] via 121.160.11.101, 00:01:26, Serial1/1
+D       101.101.103.0 [90/20665600] via 121.160.11.101, 00:01:27, Serial1/1
+D       101.101.104.0 [90/20640000] via 121.160.11.101, 00:01:39, Serial1/1
+D       101.101.105.0 [90/20665600] via 121.160.11.101, 00:01:27, Serial1/1
+D       101.101.106.0 [90/21177600] via 121.160.11.101, 00:01:27, Serial1/1
+D       101.101.107.0 [90/21228800] via 121.160.11.101, 00:01:26, Serial1/1
+D    200.10.1.0/24 [90/41075200] via 121.160.11.101, 00:01:34, Serial1/1
+     131.116.0.0/24 is subnetted, 7 subnets
+D       131.116.7.0 [90/21177600] via 121.160.11.101, 00:01:30, Serial1/1
+D       131.116.6.0 [90/20640000] via 121.160.11.101, 00:01:41, Serial1/1
+D       131.116.5.0 [90/20640000] via 121.160.11.101, 00:01:41, Serial1/1
+D       131.116.4.0 [90/20665600] via 121.160.11.101, 00:01:30, Serial1/1
+D       131.116.3.0 [90/20665600] via 121.160.11.101, 00:01:30, Serial1/1
+D       131.116.1.0 [90/20691200] via 121.160.11.101, 00:01:29, Serial1/1
+D       131.116.0.0 [90/20691200] via 121.160.11.101, 00:01:29, Serial1/1
+     11.0.0.0/24 is subnetted, 1 subnets
+
+R2#
+R2#show ip protocols
+Routing Protocol is "eigrp 100"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  EIGRP metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+  EIGRP maximum hopcount 100
+  EIGRP maximum metric variance 1
+  Redistributing: eigrp 100
+  EIGRP NSF-aware route hold timer is 240s
+  Automatic network summarization is not in effect
+  Maximum path: 4
+  Routing for Networks:
+    22.0.0.0
+    100.10.1.0/24
+    121.160.11.100/30
+  Passive Interface(s):
+    FastEthernet0/0
+    FastEthernet0/1
+    Serial1/0
+    Serial1/2
+    Serial1/3
+    Loopback0
