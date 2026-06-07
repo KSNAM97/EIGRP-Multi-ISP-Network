@@ -266,7 +266,7 @@ show ip eigrp neighbor
 | Ack | 송신 Interface IP | **Unicast만** |
 
 
-![EIGRP 5 PDU Capture](./EIGRP-PDU-CAPTURE.png)
+![EIGRP 5 PDU Capture](./eigrp-pdu-capture.png)
 
 Wireshark 캡처 결과, `121.160.11.65`에서 `224.0.0.10`으로 Hello 패킷이 전송되었고, `121.160.11.65`와 `121.160.11.66` 사이에서 Update, Query, Reply, Ack 패킷이 교환되는 것을 확인하였다.
 특히 Ack는 Wireshark에서 `Hello (Ack)` 형태로 표시되며, 본 캡처를 통해 EIGRP의 5가지 PDU를 모두 식별할 수 있다.
