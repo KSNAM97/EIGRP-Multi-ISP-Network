@@ -13,7 +13,7 @@ GNS3 / Cisco IOS 기반으로 7개 ISP 라우터와 3개 고객사 라우터(GIT
 
 ## 🗺️ 네트워크 토폴로지
 
-![EIGRP Multi-ISP Network Topology](eigrp_isp_topology.png)
+![EIGRP Multi-ISP Network Topology](topology/eigrp_isp_topology.png)
 
 ## 🎯 요구사항
 
