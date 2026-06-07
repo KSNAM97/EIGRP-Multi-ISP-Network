@@ -255,7 +255,7 @@ show ip eigrp neighbor
 ---
 
 
-🧪 EIGRP 5가지 PDU 캡처 예시
+### 🧪 EIGRP 5가지 PDU 캡처 예시
 
 | PDU | 출발지 IP | 목적지 IP |
 |-----|----------|----------|
@@ -265,7 +265,6 @@ show ip eigrp neighbor
 | Reply | 송신 Interface IP | **Unicast만** |
 | Ack | 송신 Interface IP | **Unicast만** |
 
-### EIGRP 5가지 PDU 캡처 예시
 
 ![EIGRP 5 PDU Capture](./EIGRP-PDU-CAPTURE.png)
 
