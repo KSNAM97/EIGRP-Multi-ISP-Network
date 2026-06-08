@@ -2,6 +2,18 @@
  .각 Router의 Serial interface에 IP 주소 할당후 Next-hop 구간 통신 실시
  .WAN 구간은 전부 HDLC이기 때문에 encapsulation hdlc 생략하였다.
 
+!
+line console 0
+ logging synchronous
+ length 0
+ exit
+!
+line vty 0 4
+ logging synchronous
+ length 0
+ exit
+
+
 
 	#GIT
 
@@ -11,6 +23,16 @@ conf t
 hostname GIT
 !
 no ip domain-lookup
+!
+line console 0
+ logging synchronous
+ length 0
+ exit
+!
+line vty 0 4
+ logging synchronous
+ length 0
+ exit
 !
 interface fa0/0
  description To GIT-SW
@@ -35,6 +57,16 @@ conf t
 hostname ISP-1
 !
 no ip domain-lookup
+!
+line console 0
+ logging synchronous
+ length 0
+ exit
+!
+line vty 0 4
+ logging synchronous
+ length 0
+ exit
 !
 interface s1/0
  description To ISP-7
@@ -68,6 +100,16 @@ hostname ISP-2
 !
 no ip domain-lookup
 !
+line console 0
+ logging synchronous
+ length 0
+ exit
+!
+line vty 0 4
+ logging synchronous
+ length 0
+ exit
+!
 interface fa0/1
  description To ISP-1
  ip address 121.160.11.70 255.255.255.252
@@ -90,6 +132,16 @@ conf t
 hostname ISP-3
 !
 no ip domain-lookup
+!
+line console 0
+ logging synchronous
+ length 0
+ exit
+!
+line vty 0 4
+ logging synchronous
+ length 0
+ exit
 !
 interface fa0/1
  description To ISP-2
@@ -117,6 +169,16 @@ conf t
 hostname ISP-4
 !
 no ip domain-lookup
+!
+line console 0
+ logging synchronous
+ length 0
+ exit
+!
+line vty 0 4
+ logging synchronous
+ length 0
+ exit
 !
 interface fa0/0
  description To ISP-5
@@ -148,6 +210,16 @@ hostname ISP-5
 !
 no ip domain-lookup
 !
+line console 0
+ logging synchronous
+ length 0
+ exit
+!
+line vty 0 4
+ logging synchronous
+ length 0
+ exit
+!
 interface s1/1
  bandwidth 128
  description To ISP-6
@@ -177,6 +249,16 @@ conf t
 hostname ISP-6
 !
 no ip domain-lookup
+!
+line console 0
+ logging synchronous
+ length 0
+ exit
+!
+line vty 0 4
+ logging synchronous
+ length 0
+ exit
 !
 interface s1/1
  bandwidth 128
@@ -208,6 +290,16 @@ hostname ISP-7
 !
 no ip domain-lookup
 !
+line console 0
+ logging synchronous
+ length 0
+ exit
+!
+line vty 0 4
+ logging synchronous
+ length 0
+ exit
+!
 interface s1/0
  description To ISP-6
  bandwidth 128
@@ -233,6 +325,16 @@ hostname R1
 !
 no ip domain-lookup
 !
+line console 0
+ logging synchronous
+ length 0
+ exit
+!
+line vty 0 4
+ logging synchronous
+ length 0
+ exit
+!
 interface fa0/0
  description To R1-SW 
  ip address 200.10.1.254 255.255.255.0
@@ -255,6 +357,16 @@ conf t
 hostname R2
 !
 no ip domain-lookup
+!
+line console 0
+ logging synchronous
+ length 0
+ exit
+!
+line vty 0 4
+ logging synchronous
+ length 0
+ exit
 !
 interface fa0/0
  description To R2-SW 
