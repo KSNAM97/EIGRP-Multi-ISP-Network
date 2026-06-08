@@ -205,6 +205,18 @@ conf t
 hostname GIT
 !--- 명령어 잘못 입력시 DNS서버 찾기 금지 ---
 no ip domain-lookup
+!--- 콘솔에서 자동 라인 정리 및  전체 설정이 끊김 없이 출력---
+line console 0
+ logging synchronous
+ exec-timeout 0 0
+ length 0
+ exit
+!--- 원격접속 시 자동 라인 정리 및  전체 설정이 끊김 없이 출력---
+line vty 0 4
+ logging synchronous
+ exec-timeout 0 0
+ length 0
+ exit
 !--- IP 주소 추가 ---
 interface fa0/0
  description To GIT-SW
