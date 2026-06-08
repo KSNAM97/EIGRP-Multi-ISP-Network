@@ -87,7 +87,7 @@ router eigrp 100
 no auto-summary
 passive-interface default
 no passive-interface fa0/1
-no passive-interface f0/0
+no passive-interface fa0/0
 no passive-interface s1/0
 network 121.160.11.76 0.0.0.3
 network 121.160.11.80 0.0.0.3
