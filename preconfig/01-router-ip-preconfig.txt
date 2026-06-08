@@ -2,18 +2,6 @@
  .각 Router의 Serial interface에 IP 주소 할당후 Next-hop 구간 통신 실시
  .WAN 구간은 전부 HDLC이기 때문에 encapsulation hdlc 생략하였다.
 
-!
-line console 0
- logging synchronous
- length 0
- exit
-!
-line vty 0 4
- logging synchronous
- length 0
- exit
-
-
 
 	#GIT
 
