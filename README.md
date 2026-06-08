@@ -258,6 +258,21 @@ end
 wr
 !
 ```
+#### IP-SUMMARY 명령어 작성 예시
+```
+en
+conf t
+!---serial 1/1번 포트에 eigrp 100에 대한 주소 요약---
+interface s1/1
+ip summary-address eigrp 100 131.116.0.0 255.255.248.0
+!
+end
+!
+wr
+!
+reload
+!
+```
 
 ---
 
