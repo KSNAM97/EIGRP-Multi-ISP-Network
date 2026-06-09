@@ -8,6 +8,8 @@ show ip route eigrp
 !
 show ip protocols
 !
+show ip route
+!
 show ip eigrp topology
 !
 show ip eigrp topology all-links
