@@ -1,5 +1,3 @@
-### EIGRP 5가지 PDU 캡처 예시
-
 # EIGRP 5가지 PDU (Protocol Data Unit)
 
 EIGRP는 5가지 패킷을 사용한다: **Hello, Update, Query, Reply, Ack**
