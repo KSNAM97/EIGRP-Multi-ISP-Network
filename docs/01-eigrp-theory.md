@@ -53,11 +53,38 @@ EIGRP는 **1986년에 개발된 IGRP 프로토콜의 확장형**으로서 Cisco 
 - Router는 하나의 목적지 네트워크에 대해서 **한 개의 경로만 지원** (최적 경로만)
 - 복수개의 경로가 확인되면 **Metric값을 사용하여 최적 경로 선출**
 
-### EIGRP Metric 공식
+### Metric 계산 공식
 
 ```
-EIGRP Metric = EIGRP Bandwidth + EIGRP Delay
+EIGRP Bandwidth = (10^7 / 목적지까지 최소의 Bandwidth[Kbps]) × 256
+EIGRP Delay     = (목적지까지 Delay의 총 합[μs] / 10) × 256
+EIGRP Metric    = EIGRP Bandwidth + EIGRP Delay
 ```
+
+### 🧮 계산 예시 (본 프로젝트 검증 결과 기준)
+
+**시나리오**: GIT → ISP-1 → ISP-2 → ... → 목적지 (`131.116.0.0/21`)
+- 경로 중 **최소 Bandwidth**: GIT ↔ ISP-1 구간의 **64 Kbps** (WAN HDLC)
+- 누적 **Delay**: Serial(20,000 μs) + FastEthernet(100 μs) 등의 합산
+
+```
+EIGRP Bandwidth = (10,000,000 / 64) × 256
+                = 156,250 × 256
+                = 40,000,000
+
+EIGRP Delay     = (누적 Delay / 10) × 256
+                ≈ 665,600   (Serial + FastEthernet 누적 기준)
+
+EIGRP Metric    = 40,000,000 + 665,600
+                = 40,665,600
+```
+
+→ 실제 검증 결과인 `D 131.116.0.0 [90/40665600] via 121.160.11.66` 의
+**Metric 값 `40,665,600`** 과 정확히 일치한다.
+
+> 💡 **핵심**: EIGRP Metric은 **경로 상 가장 느린 링크의 Bandwidth**가 지배적이다.
+> 따라서 64 Kbps 구간이 하나라도 포함되면 Metric이 크게 증가한다.
+
 
 ### EIGRP 5가지 속성값 (K-상수)
 
