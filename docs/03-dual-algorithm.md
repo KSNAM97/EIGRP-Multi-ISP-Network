@@ -39,18 +39,22 @@
 ## 📊 DUAL 예시 (개념도)
 
 ```
-        [Router A]──────[Router B]──────[목적지 N/W]
-            │                              ↑
-            │                              │
-            └────[Router C]────────────────┘
+        ┌──────[Router B]──────┐
+        │                      │
+   [Router A]───[Router C]───[목적지 N/W]
+        │                      │
+        └──────[Router D]──────┘
 ```
 
-| 경로 | FD (총 거리) | AD (Next-hop 제외) |
-|------|-------------|-------------------|
-| A → B → 목적지 | 100 (Successor) | 60 |
-| A → C → 목적지 | 150 | **80** ← Successor FD(100) 보다 작음 ✅ |
+| 경로 | FD (총 거리) | AD (Next-hop 제외) | 판정 |
+|------|-------------|-------------------|------|
+| A → B → 목적지 | **100** (Successor) | 60 | ⭐ Successor |
+| A → C → 목적지 | 150 | **80** | ✅ AD(80) < Successor FD(100) → **Feasible Successor** |
+| A → D → 목적지 | 200 | 120 | ❌ AD(120) > Successor FD(100) → FS 불가 |
 
-→ **A → C 경로가 Feasible Successor**로 선출
+→ **A → B 경로가 Successor**, **A → C 경로가 Feasible Successor**로 선출
+→ B 장애 시 재계산 없이 즉시 C로 전환 (빠른 수렴)
+
 
 ## 🎯 DUAL의 장점
 
