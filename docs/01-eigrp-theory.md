@@ -39,12 +39,14 @@ EIGRP는 **1986년에 개발된 IGRP 프로토콜의 확장형**으로서 Cisco 
 
 | Routing Protocol | AD 값 | 비고 |
 |------------------|-------|------|
-| Static | 1 | |
+| **Connected** | **0** | 직접 연결된 인터페이스 |
+| Static | 1 | 정적 경로 |
 | **EIGRP Summary** | **5** | 요약 경로 |
 | **EIGRP Internal** | **90** | Bandwidth + Delay |
 | OSPF | 110 | Bandwidth |
 | RIP | 120 | Hop-count (거리) |
 | **EIGRP External** | **170** | 재분배 경로 |
+
 
 ## 📐 Metric (메트릭)
 
