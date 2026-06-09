@@ -98,12 +98,6 @@ EIGRP Metric    = 40,000,000 + 665,600
 
 > **기본은 K1(Bandwidth), K3(Delay)만 사용**. K2, K4, K5는 실시간으로 변하는 값이라 기본 비활성화.
 
-### Metric 계산 공식
-
-```
-EIGRP Bandwidth = (10^7 / 목적지까지 최소의 Bandwidth) × 256
-EIGRP Delay     = (목적지까지 Delay의 총 합 / 10) × 256
-```
 
 ## ⚖️ Load Balancing (로드 분산)
 
